@@ -1,6 +1,8 @@
 const express=require('express')
+const cors = require('cors')
 const app=express()
 app.use(express.json())
+app.use(cors())
 
 const {Client}=require('pg')
 const con=new Client({
@@ -22,7 +24,7 @@ app.get('/coucou',(req,res)=>{
 app.post('/postData',(req,res)=>{
     console.log("/postData")
     const {nom,id}=req.body
-    const insert_query="INSERT INTO qui (nom;id) VALUES ($1,$2)"
+    const insert_query="INSERT INTO public.qui (nom,id) VALUES ($1,$2)"
     con.query(insert_query,[nom,id],(err,result)=>{
         if(err) {
             res.end(err)

@@ -35,7 +35,7 @@
                 const nom = e.target.nom.value
                 const id = e.target.id.value
                 
-                alert("#qui-form 2")
+                alert("#qui-form 2, nom="+nom)
                 fetch('http://localhost:3000/postData', {
                     method: 'POST',
                     headers: {
@@ -44,9 +44,9 @@
                     body: JSON.stringify({nom, id})
                 })
 
-                alert('creation OK')
+                alert('qui-form 3')
 
-                window.location = 'listQui.html'
+                ////window.location = 'listQui.html'
             })
         }
     </script>
