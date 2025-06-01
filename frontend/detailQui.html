@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail qui</title>
+    <link href="fred.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Detail Qui</h1>
+        <form id="qui-form">
+            <div class="form-group">
+                <input type="text" name="nom" class="form-control" placeholder="nom" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="id" class="form-control" placeholder="id">
+            </div>
+
+            <button type="submit" class="button">enregistrer</button>
+        </form>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const form = document.querySelector('#qui-form');
+
+            form.addEventListener('submit', e => {
+                alert("#qui-form 1")
+                e.preventDefault(); 
+                
+                const nom = e.target.nom.value
+                const id = e.target.id.value
+                
+                alert("#qui-form 2")
+                fetch('http://localhost:3000/postData', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({nom, id})
+                })
+
+                alert('creation OK')
+
+                window.location = 'listQui.html'
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+dans "backend":
+"npm init"
+"npm i express"
+"npm i ng"

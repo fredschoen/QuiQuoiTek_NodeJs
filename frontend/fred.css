@@ -1,0 +1,33 @@
+.form-control{
+  background-color: #044444; /* Green */
+  color: white;
+}
+.form-group{
+   display: inline-block;
+}
+
+.button {
+  transition-duration: 0.4s;
+ background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #044444; /* Green */
+  color: white;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+}
+
