@@ -3,4 +3,5 @@ dans "backend":
 "npm i express"
 "npm i ng"
 "npm i fs"
+"node index.js"
 dans "frontend" avec l'explorateur de fichier: click sur listQui.html (monoutilisateur: serveur frontend inutile)

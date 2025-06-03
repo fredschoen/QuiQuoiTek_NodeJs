@@ -17,9 +17,13 @@ const con=new Client({
 con.connect().then(()=> console.log("connected"))
 
 app.get('/coucou',(req,res)=>{
-    console.log("coucou")
+    console.log("/coucou")
     res.send("get coucou")
 })
+
+app.get('/img1.jpg',(req,res)=>{
+    console.log("/img1")
+    res.sendFile(path.join(__dirname, "./doudou/img1.jpg"));})
 
 app.post('/postData',(req,res)=>{
     console.log("/postData")
