@@ -1,6 +1,7 @@
 const express=require('express')
 const cors = require('cors')
 const app=express()
+var fs = require('fs')
 app.use(express.json())
 app.use(cors())
 
@@ -18,7 +19,13 @@ con.connect().then(()=> console.log("connected"))
 
 app.get('/coucou',(req,res)=>{
     console.log("/coucou")
-    res.send("get coucou")
+    fs.readFile('image.png', function(err, data) {
+    if (err) throw err // Fail if the file can't be read.
+    res.writeHead(200, {'Content-Type': 'image/jpeg'})
+    res.end(data) // Send the file data to the browser.
+    })
+
+    //res.send("get coucou")
 })
 
 app.get('/img1.jpg',(req,res)=>{
@@ -41,5 +48,5 @@ app.post('/postData',(req,res)=>{
 })
 
 app.listen(3000,()=>{
-console.log("server is running...")
+console.log('Server running at http://localhost:3000/')
 })

@@ -11,6 +11,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "gn": "^3.0.0",
     "ng": "^0.0.0",
     "pg": "^8.16.0",
     "postgre": "^0.1.8"
