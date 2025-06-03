@@ -1,6 +1,7 @@
 const express=require('express')
 const cors = require('cors')
 const app=express()
+const path = require('path')
 var fs = require('fs')
 app.use(express.json())
 app.use(cors())
@@ -24,8 +25,15 @@ app.get('/coucou',(req,res)=>{
     res.writeHead(200, {'Content-Type': 'image/jpeg'})
     res.end(data) // Send the file data to the browser.
     })
+})
 
-    //res.send("get coucou")
+app.get('/electro',(req,res)=>{
+    console.log("/electro")
+    fs.readFile(path.resolve("../electro.jpg"), function(err, data) {
+    if (err) throw err // Fail if the file can't be read.
+    res.writeHead(200, {'Content-Type': 'image/jpeg'})
+    res.end(data) // Send the file data to the browser.
+    })
 })
 
 app.get('/img1.jpg',(req,res)=>{
