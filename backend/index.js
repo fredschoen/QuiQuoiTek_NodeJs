@@ -18,9 +18,17 @@ const con=new Client({
 
 con.connect().then(()=> console.log("connected"))
 
+
+app.get('/quis', (req, res) => {
+  console.log("get quis");
+  con.query("SELECT * FROM public.qui where nom < 'B'", (err, database) => {
+    res.json(database)
+  });
+})
+
 app.get('/coucou',(req,res)=>{
-    console.log("/coucou")
-    fs.readFile('image.png', function(err, data) {
+    console.log("/coucou");
+    fs.readFile('coucou.png', function(err, data) {
     if (err) throw err // Fail if the file can't be read.
     res.writeHead(200, {'Content-Type': 'image/jpeg'})
     res.end(data) // Send the file data to the browser.
@@ -28,7 +36,8 @@ app.get('/coucou',(req,res)=>{
 })
 
 app.get('/electro',(req,res)=>{
-    console.log("/electro")
+    console.log("/electro");
+    //pour le chemin, on remonte d'un nveau: path.resolve
     fs.readFile(path.resolve("../electro.jpg"), function(err, data) {
     if (err) throw err // Fail if the file can't be read.
     res.writeHead(200, {'Content-Type': 'image/jpeg'})
@@ -36,12 +45,14 @@ app.get('/electro',(req,res)=>{
     })
 })
 
-app.get('/img1.jpg',(req,res)=>{
-    console.log("/img1")
-    res.sendFile(path.join(__dirname, "./doudou/img1.jpg"));})
+app.get('/doudou',(req,res)=>{
+    //pour le chemin, on descend d'un nveau: __dirname
+    console.log("/doudou");
+    res.sendFile(path.join(__dirname, "images/doudou.jpg"));
+})
 
 app.post('/postData',(req,res)=>{
-    console.log("/postData")
+    console.log("/postData");
     const {nom,id}=req.body
     const insert_query="INSERT INTO public.qui (nom,id) VALUES ($1,$2)"
     con.query(insert_query,[nom,id],(err,result)=>{

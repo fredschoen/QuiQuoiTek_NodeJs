@@ -11,6 +11,76 @@
 <body>
     <div class="container">
         <h1>Liste Qui</h1>
+            <div>
+                <a href="detailQui.html" class="button">ajouter</a>
+            </div>
     </div>
+    <img src="http://localhost:3000/coucou" height="200"/>
+    <table id="quis-table" class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>fullname</th>
+                <th>genre</th>
+                <th>datenaiss</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        var quis = []
+
+        const renderQuis = () => {
+            alert("renderQuis");
+            const tbody = document.querySelector('#quis-table tbody');
+            tbody.innerHTML = ''
+            
+            quis.rows.forEach(qui => {
+                const tr = document.createElement('tr')
+
+                tr.append(createTd(qui.id))
+                tr.append(createTd(qui.fullname))
+                tr.append(createTd(qui.genre))
+                tr.append(createTd(qui.datenaiss))
+                tr.append(createDeleteButton(qui.id))
+
+                tbody.append(tr)
+            })
+        }
+
+        const createDeleteButton = (id) => {
+            const button = document.createElement('button')
+            button.innerHTML = 'coucou'
+
+            return button;
+        }
+
+       const createTd = (value) => {
+            const td = document.createElement('td')
+            td.innerHTML = value
+            return td;
+        }
+
+
+        window.onload = () => {
+            fetchQuis()
+        }
+
+        const fetchQuis = async () => {
+            const response = await fetch('http://localhost:3000/quis')
+            const data = await response.json()
+            quis = data;
+            console.log(quis.rows);
+            renderQuis()
+        }
+
+
+
+    </script>
+
+
 </body>
 </html>
