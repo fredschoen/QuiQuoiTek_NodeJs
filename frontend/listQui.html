@@ -12,10 +12,11 @@
     <div class="container">
         <h1>Liste Qui</h1>
             <div>
-                <a href="detailQui.html" class="button">ajouter</a>
+                <a href=<script>document.write("\"detailQui.html?creer\"")</script>
+                class="button">ajouter</a>
             </div>
     </div>
-    <img src="http://localhost:3000/coucou" height="200"/>
+    <img src="http://localhost:3000/coucou" height="100"/>
     <table id="quis-table" class="table">
         <thead>
             <tr>
@@ -45,17 +46,17 @@
                 tr.append(createTd(qui.fullname))
                 tr.append(createTd(qui.genre))
                 tr.append(createTd(qui.datenaiss))
-                tr.append(createDeleteButton(qui.id))
+                tr.append(createA(qui.id))
 
                 tbody.append(tr)
             })
         }
 
-        const createDeleteButton = (id) => {
-            const button = document.createElement('button')
-            button.innerHTML = 'coucou'
-
-            return button;
+        const createA = (id) => {
+            const a = document.createElement('a')
+            a.innerHTML = 'modifier';
+            a.href = "detailQui.html?modifier="+id;
+            return a;
         }
 
        const createTd = (value) => {

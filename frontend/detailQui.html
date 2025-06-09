@@ -7,11 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>detail qui</title>
     <link href="fred.css" rel="stylesheet">
-
+    <script>
+        //valable pour xxx?creer ou xxx?modifier=123  
+        var url = window.location.search.split('?');
+        var paramFonction="";
+        var paramId=0;
+        if (url.length>1) {
+            var param1 = url[1].split('=');
+            paramFonction=param1[0];
+            if (param1.length>0) {
+                paramId=param1[1];
+            }
+        }
+        alert(paramFonction);
+        alert(paramId);
+        
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Detail Qui</h1>
+        <h1 id="h1haut">Detail Qui</h1>
         <form id="qui-form">
             <div class="form-group">
                 <input type="text" name="nom" class="form-control" placeholder="nom" autocomplete="off">
@@ -24,12 +39,15 @@
             <button type="submit" class="button">enregistrer</button>
         </form>
     </div>
-    <img src="doudou.jpg" height="200"/>
-    <img src="http://localhost:3000/doudou" height="200"/>
-    <img src="http://localhost:3000/coucou" height="200"/>
-    <img src="http://localhost:3000/electro" height="200"/>
+    <img src="doudou.jpg" height="100"/>
+    <img src="http://localhost:3000/doudou" height="100"/>
+    <img src="http://localhost:3000/coucou" height="100"/>
+    <img src="http://localhost:3000/electro" height="100"/>
     <script>
         window.onload = () => {
+
+            const h1haut = document.querySelector('#h1haut');
+            h1haut.innerHTML=paramFonction + " " + paramId;
             const form = document.querySelector('#qui-form');
 
             form.addEventListener('submit', e => {
