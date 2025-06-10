@@ -19,6 +19,13 @@ const con=new Client({
 con.connect().then(()=> console.log("connected"))
 
 
+app.get('/qui', (req, res) => {
+  console.log("get qui");
+  con.query("SELECT * FROM public.qui where id = 589", (err, database) => {
+    res.json(database)
+  });
+})
+
 app.get('/quis', (req, res) => {
   console.log("get quis");
   con.query("SELECT * FROM public.qui where nom < 'B'", (err, database) => {

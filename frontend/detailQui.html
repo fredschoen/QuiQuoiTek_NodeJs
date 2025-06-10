@@ -8,6 +8,27 @@
     <title>detail qui</title>
     <link href="fred.css" rel="stylesheet">
     <script>
+
+        async function fetchAsync (url) {
+        let response = await fetch(url);
+        let data = await response.json();
+        alert(url);
+        return data;
+        }
+
+
+        const readQui = async id => {
+            await fetch('http://localhost:3000/qui', {
+                        method: 'GET',
+                    })
+
+        }
+
+
+
+
+
+
         //valable pour xxx?creer ou xxx?modifier=123  
         var url = window.location.search.split('?');
         var paramFonction="";
@@ -21,7 +42,11 @@
         }
         alert(paramFonction);
         alert(paramId);
-        
+        x=fetchAsync ("http://localhost:3000/qui").then(
+            alert("then")
+        );
+        alert("après fetchAsync");
+
     </script>
 </head>
 <body>
