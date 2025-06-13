@@ -2,7 +2,7 @@ const express=require('express')
 const cors = require('cors')
 const app=express()
 const path = require('path')
-var fs = require('fs')
+const fs = require('fs')
 app.use(express.json())
 app.use(cors())
 
@@ -61,7 +61,15 @@ app.get('/imageQui/:id',(req,res)=>{
     const nomFic="i"+num.toString().padStart(7, "0")+".png";
     const nomComplet=rep+nomFic;
     console.log(nomComplet);
-    fs.readFile(path.resolve(nomComplet), function(err, data) {
+    var imgPath=path.resolve(nomComplet);
+    if (fs.existsSync(imgPath)) {
+        console.log("existe")
+    }
+    else {
+        imgPath=path.resolve("../electro.jpg")
+    }
+
+    fs.readFile(imgPath, function(err, data) {
     if (err) throw err // Fail if the file can't be read.
     res.writeHead(200, {'Content-Type': 'image/jpeg'})
     res.end(data) // Send the file data to the browser.
