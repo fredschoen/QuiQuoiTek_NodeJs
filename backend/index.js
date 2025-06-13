@@ -19,9 +19,9 @@ const con=new Client({
 con.connect().then(()=> console.log("connected"))
 
 
-app.get('/qui', (req, res) => {
-  console.log("get qui");
-  con.query("SELECT * FROM public.qui where id = 589", (err, database) => {
+app.get('/qui/:id',(req,res)=>{
+    console.log(req.originalUrl);
+  con.query("SELECT * FROM public.qui where id = " + req.params.id, (err, database) => {
     res.json(database)
   });
 })
@@ -52,11 +52,12 @@ app.get('/electro',(req,res)=>{
     })
 })
 
-app.get('/imageQui',(req,res)=>{
-    console.log("/imageQui");
+app.get('/imageQui/:id',(req,res)=>{
+    console.log(req.originalUrl);
+    
     //pour le chemin, on remonte d'un nveau: path.resolve
     const rep="../../QuoiQuiTek-4D_Folders/QuoiQuiTek-4D_Data/Photos/";
-    const num=8;
+    const num=req.params.id;
     const nomFic="i"+num.toString().padStart(7, "0")+".png";
     const nomComplet=rep+nomFic;
     console.log(nomComplet);

@@ -7,72 +7,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>detail qui</title>
     <link href="fred.css" rel="stylesheet">
-    <script>
-
-        async function fetchAsync (url) {
-        let response = await fetch(url);
-        let data = await response.json();
-        alert(url);
-        return data;
-        }
-
-
-        const readQui = async id => {
-            await fetch('http://localhost:3000/qui', {
-                        method: 'GET',
-                    })
-
-        }
-
-
-
-
-
-
-        //valable pour xxx?creer ou xxx?modifier=123  
-        var url = window.location.search.split('?');
-        var paramFonction="";
-        var paramId=0;
-        if (url.length>1) {
-            var param1 = url[1].split('=');
-            paramFonction=param1[0];
-            if (param1.length>0) {
-                paramId=param1[1];
-            }
-        }
-        alert(paramFonction);
-        alert(paramId);
-        x=fetchAsync ("http://localhost:3000/qui").then(
-            alert("then")
-        );
-        alert("après fetchAsync");
-
-    </script>
 </head>
 <body>
     <div class="container">
         <h1 id="h1haut">Detail Qui</h1>
+        <h2>
+            <img src="http://localhost:3000/doudou" height="50"/>
+            <a href="listQui.html">
+               retour à la liste 
+            </a>
+            <img src="http://localhost:3000/coucou" height="50"/>
+        </h2>
         <form id="qui-form">
             <div class="form-group">
-                <input type="text" name="nom" class="form-control" placeholder="nom" autocomplete="off">
-            </div>
+                <input id="quiid" type="text" name="id" class="form-control" placeholder="id">
+                <input id="quinom" type="text" name="nom" class="form-control" placeholder="nom">
+                <input id="quiprenom" type="text" name="prenom" class="form-control" placeholder="prenom">
+                <input id="quifullname" type="text" name="fullname" class="form-control" placeholder="fullname">
+                <input id="quidomaine" type="text" name="domaine" class="form-control" placeholder="domaine">
+                <input id="quigenre" type="text" name="genre" class="form-control" placeholder="genre">
+                <input id="quipays" type="text" name="pays" class="form-control" placeholder="pays">
+                <input id="quistyle" type="text" name="style" class="form-control" placeholder="style">
+                <input id="quiremarque" type="text" name="remarque" class="form-control" placeholder="remarque">
+                <input id="quidatenaiss" type="text" name="datenaiss" class="form-control" placeholder="datenaiss">
+                <input id="quidatedeces" type="text" name="datedeces" class="form-control" placeholder="datedeces">
+                <input id="quicreatts" type="text" name="creatts" class="form-control" placeholder="creatts">
+                <input id="quimodifts" type="text" name="modifts" class="form-control" placeholder="modifts">
 
-            <div class="form-group">
-                <input type="text" name="id" class="form-control" placeholder="id">
             </div>
 
             <button type="submit" class="button">enregistrer</button>
         </form>
     </div>
-    <img src="doudou.jpg" height="100"/>
-    <img src="http://localhost:3000/doudou" height="100"/>
-    <img src="http://localhost:3000/coucou" height="100"/>
-    <img src="http://localhost:3000/imageQui" height="100"/>
+    <img id="imgQui" height="100"/>
     <script>
         window.onload = () => {
 
+            //valable pour xxx?creer ou xxx?modifier=123  
+            var url = window.location.search.split('?');
+            var paramFonction="";
+            var paramId=0;
+            if (url.length>1) {
+                var param1 = url[1].split('=');
+                paramFonction=param1[0];
+                if (param1.length>0) {
+                    paramId=param1[1];
+                }
+            }
             const h1haut = document.querySelector('#h1haut');
             h1haut.innerHTML=paramFonction + " " + paramId;
+
             const form = document.querySelector('#qui-form');
 
             form.addEventListener('submit', e => {
@@ -95,6 +79,35 @@
 
                 ////window.location = 'listQui.html'
             })
+
+            const fetchQui = async () => {
+                const response = await fetch('http://localhost:3000/qui/'+paramId)
+                const data = await response.json()
+                qui = data;
+                console.log(qui.rows);
+            document.getElementById('quiid').value=qui.rows[0].id;
+            document.getElementById('quinom').value=qui.rows[0].nom;
+            document.getElementById('quiprenom').value=qui.rows[0].prenom;
+            document.getElementById('quifullname').value=qui.rows[0].fullname;
+            document.getElementById('quigenre').value=qui.rows[0].genre;
+            document.getElementById('quidomaine').value=qui.rows[0].domaine;
+            document.getElementById('quipays').value=qui.rows[0].pays;
+            document.getElementById('quistyle').value=qui.rows[0].style;
+            document.getElementById('quiremarque').value=qui.rows[0].remarque;
+            document.getElementById('quidatenaiss').value=qui.rows[0].datenaiss;
+            document.getElementById('quidatedeces').value=qui.rows[0].datedeces;
+            document.getElementById('quicreatts').value=qui.rows[0].creatts;
+            document.getElementById('quimodifts').value=qui.rows[0].modifts;
+     }
+
+            
+
+            fetchQui()
+
+            document.getElementById("imgQui").src = "http://localhost:3000/imageQui/"+paramId; 
+            document.getElementById("imgQui").src = "http://localhost:3000/imageQui/"+paramId; 
+
+       
         }
     </script>
 </body>
