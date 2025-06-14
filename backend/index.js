@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 app.use(express.json())
 app.use(cors())
-
+var listqui=""
 const {Client}=require('pg')
 const con=new Client({
     host:"localhost",
@@ -29,6 +29,10 @@ app.get('/qui/:id',(req,res)=>{
 app.get('/quis', (req, res) => {
   console.log("get quis");
   con.query("SELECT * FROM public.qui where nom < 'B'", (err, database) => {
+    listqui=";"
+    database.rows.forEach(qui => {
+        listqui+=qui.fullname+";";
+    })
     res.json(database)
   });
 })
