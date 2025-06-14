@@ -13,9 +13,7 @@
         <h1 id="h1haut">Detail Qui</h1>
         <h2>
             <img src="http://localhost:3000/doudou" height="50"/>
-            <a href="listQui.html">
-               retour à la liste 
-            </a>
+            <a href="listQui.html" class="button">retour à la liste </a>
             <img src="http://localhost:3000/coucou" height="50"/>
         </h2>
         <form id="qui-form">
@@ -33,6 +31,7 @@
                 <input id="quidatedeces" type="text" name="datedeces" class="form-control" placeholder="datedeces">
                 <input id="quicreatts" type="text" name="creatts" class="form-control" placeholder="creatts">
                 <input id="quimodifts" type="text" name="modifts" class="form-control" placeholder="modifts">
+                <input id="paramFonction" type="hidden" name="action">
                 <button id='btAction' type="submit" class="button"></button>
 
             </div>
@@ -40,9 +39,8 @@
         </form>
     </div>
     <img id="imgQui" height="300"/>
-            <a id='btSuuivant' href="detailQui.html">
-               suivant
-            </a>
+            <a id='btSuivant' class="button">suivant</a>
+            <a id='btPrecedant' class="button">precedant</a>
     <script>
         window.onload = () => {
 
@@ -98,21 +96,17 @@
                 document.getElementById('quidatedeces').value=qui.rows[0].datedeces;
                 document.getElementById('quicreatts').value=qui.rows[0].creatts;
                 document.getElementById('quimodifts').value=qui.rows[0].modifts;
+                document.getElementById('paramFonction').value=paramFonction;
 
                 document.getElementById('h1haut').innerHTML=paramFonction + " " + qui.rows[0].fullname;
-
         }
-
-            
 
             fetchQui()
 
             document.getElementById('btAction').innerHTML=paramFonction;
-
             document.getElementById("imgQui").src = "http://localhost:3000/imageQui/"+paramId; 
             document.getElementById("imgQui").src = "http://localhost:3000/imageQui/"+paramId; 
 
-       
         }
     </script>
 </body>
