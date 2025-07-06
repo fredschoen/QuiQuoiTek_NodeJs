@@ -1,8 +1,8 @@
--- Table: public.qui
+-- Table: public.theme
 
-DROP TABLE IF EXISTS public.qui;
+-- DROP TABLE IF EXISTS public.theme;
 
-CREATE TABLE IF NOT EXISTS public.qui
+CREATE TABLE IF NOT EXISTS public.theme
 (
     id integer,
     nom character varying(50) COLLATE pg_catalog."default",
@@ -21,5 +21,5 @@ CREATE TABLE IF NOT EXISTS public.qui
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.qui
+ALTER TABLE IF EXISTS public.theme
     OWNER to postgres;

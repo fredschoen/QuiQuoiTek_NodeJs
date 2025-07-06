@@ -1,0 +1,20 @@
+{
+  "name": "quiquoitek",
+  "version": "1.0.0",
+  "description": "quiquoitek CRUD with Express and Postgres",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.2"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Qui Quoi Thèque</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</head>
+<body>
+  <h1>Qui Quoi Thèque</h1>
+    <h2>Qui</h2>
+
+        <table id="qui_table" class="table">
+            <thead>
+              <tr>
+                  <th>id</th>
+                  <th>fullname</th>
+                  <th>genre</th>
+                  <th>datenaiss</th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody id="qui_table_tbody">
+            </tbody>
+        </table>
+
+  <script>
+    const createTd = (value) => {
+        const td = document.createElement('td')
+        td.innerHTML = value
+        return td;
+    }
+    async function fetchquis() {
+      //alert("fetchquis")
+      const res = await fetch('/quis');
+      return res.json();
+    }
+    async function refreshquis() {
+      //alert("refreshquis")
+      const quis = await fetchquis();
+ 
+      const tbody = document.getElementById('qui_table_tbody');
+      tbody.innerHTML = ''
+      quis.forEach(a => {
+        const tr = document.createElement('tr')
+        tr.append(createTd(a.id))
+        tr.append(createTd(a.fullname))
+        tr.append(createTd(a.genre))
+        tr.append(createTd(a.datenaiss))
+        tbody.append(tr)      
+      });
+    }
+ 
+    refreshquis();
+  </script>
+</body>
+</html>
