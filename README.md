@@ -1,6 +1,6 @@
 # quiquoitek Demo
 
-Ce projet est un exemple simple d'API REST en **Node.js** permettant de gérer une bibliothèque. Il expose un CRUD pour deux entités : `authors` et `books` stockées dans une base **PostgreSQL**.
+Ce projet est un exemple simple d'API REST en **Node.js** permettant de gérer une bibliothèque. Il expose un CRUD pour deux entités : `quis` et `quois` stockées dans une base **PostgreSQL**.
 Une petite interface HTML est également fournie pour manipuler ces données.
 
 ## Prérequis
@@ -58,17 +58,17 @@ npm start
 
 ## Endpoints
 
-- `GET /authors` – liste des auteurs
-- `GET /authors/:id` – récupérer un auteur
-- `POST /authors` – créer un auteur `{ name }`
-- `PUT /authors/:id` – mettre à jour un auteur `{ name }`
-- `DELETE /authors/:id` – supprimer un auteur
+- `GET /quis` – liste des auteurs
+- `GET /quis/:id` – récupérer un auteur
+- `POST /quis` – créer un auteur `{ name }`
+- `PUT /quis/:id` – mettre à jour un auteur `{ name }`
+- `DELETE /quis/:id` – supprimer un auteur
 
-- `GET /books` – liste des livres
-- `GET /books/:id` – récupérer un livre
-- `POST /books` – créer un livre `{ title, author_id }`
-- `PUT /books/:id` – mettre à jour un livre `{ title, author_id }`
-- `DELETE /books/:id` – supprimer un livre
+- `GET /quois` – liste des livres
+- `GET /quois/:id` – récupérer un livre
+- `POST /quois` – créer un livre `{ title, author_id }`
+- `PUT /quois/:id` – mettre à jour un livre `{ title, author_id }`
+- `DELETE /quois/:id` – supprimer un livre
 
 ## Structure du projet
 

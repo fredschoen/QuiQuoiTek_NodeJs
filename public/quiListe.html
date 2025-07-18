@@ -8,12 +8,16 @@
 </head>
 <body>
   <h1>Qui Quoi Thèque</h1>
+      <div>
+        <a href="index.html" class="button">Sommaire</a>
+    </div>
+
     <h2>Qui</h2>
 
         <table id="qui_table" class="table">
             <thead>
               <tr>
-                  <th>id</th>
+                  <th>domaine</th>
                   <th>fullname</th>
                   <th>genre</th>
                   <th>datenaiss</th>
@@ -43,7 +47,7 @@
       tbody.innerHTML = ''
       quis.forEach(a => {
         const tr = document.createElement('tr')
-        tr.append(createTd(a.id))
+        tr.append(createTd(a.domaine))
         tr.append(createTd(a.fullname))
         tr.append(createTd(a.genre))
         tr.append(createTd(a.datenaiss))

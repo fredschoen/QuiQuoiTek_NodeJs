@@ -3,7 +3,7 @@ const db = require('../db');
 exports.getAllQui = async (req, res) => {
   console.log("getAllQui")
   try {
-    const { rows } = await db.query('SELECT * FROM quis ORDER BY id');
+    const { rows } = await db.query('SELECT * FROM qui  where genre = $1 and datenaiss > $2 ORDER BY datenaiss, fullname' , ['F','1959-12-31']);
     res.json(rows);
   } catch (err) {
     console.log( err.message)
