@@ -31,12 +31,13 @@
                 <input id="quimodifts" type="text" name="modifts" class="form-control" placeholder="modifts">
             </div>
 
-            <img id="imgQui" height="400"/>
+            <img id="image" height="500"/>
 
         </form>
     </div>
 
-
+    <a href="quiListe.html" class="button">Liste</a>
+    <a id="suivant" href="" class="button">Suivant</a>
 
     <script>
         window.onload = () => {
@@ -67,12 +68,13 @@
             document.getElementById('quidatedeces').value=qui.datedeces;
             document.getElementById('quicreatts').value=qui.creatts;
             document.getElementById('quimodifts').value=qui.modifts;
-            document.getElementById("imgQui").src = "http://localhost:3000/quis/imgQui/"+qui.id; 
+
             document.getElementById('h1haut').innerHTML=qui.fullname;
+            document.getElementById("image").src = "http://localhost:3000/quis/imgQui/"+qui.id; 
+            document.getElementById("suivant").href = "http://localhost:3000/quiDetail.html?"+qui.idSuivant; 
+
+            console.log(qui);
         }
-
-
-
 
 </script>
 </body>

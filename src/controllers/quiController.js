@@ -1,11 +1,18 @@
 const db = require('../db')
 const path = require('path')
 const fs = require('fs')
-
+console.log("quiController.js")
+var listIdQui=";"
+ 
 exports.getAllQui = async (req, res) => {
   console.log("getAllQui")
+  listIdQui=";"
   try {
-    const { rows } = await db.query('SELECT * FROM qui  where genre = $1 and datenaiss > $2 ORDER BY datenaiss, fullname' , ['F','1959-12-31']);
+    const { rows } = await db.query('SELECT * FROM qui  where genre = $1 and datenaiss > $2 ORDER BY datenaiss desc, fullname' , ['F','1959-12-31']);
+    rows.forEach(qui => {
+      listIdQui+=qui.id.toString().padStart(7, "0")+";";
+    })
+    console.log(listIdQui)
     res.json(rows);
   } catch (err) {
     console.log( err.message)
@@ -21,12 +28,9 @@ exports.getImgQuiById = async (req, res) => {
   const nomComplet=rep+nomFic;
   var imgPath=path.resolve(nomComplet);
   if (fs.existsSync(imgPath)) {
-      console.log("img OK")
   }
   else {
-      console.log("img KO "+imgPath)
       imgPath=path.resolve("./public/img/ko.jpg")
-      console.log("img defaut "+imgPath)
   }
   fs.readFile(imgPath, function(err, data) {
   if (err) throw err // Fail if the file can't be read.
@@ -38,11 +42,25 @@ exports.getImgQuiById = async (req, res) => {
 
 exports.getQuiById = async (req, res) => {
   console.log("getQuiById")
+  console.log(listIdQui)
   try {
     const { id } = req.params;
     const { rows } = await db.query('SELECT * FROM qui WHERE id = $1', [id]);
     if (rows.length === 0) return res.status(404).json({ error: 'Qui not found' });
-    res.json(rows[0]);
+    var row0=rows[0];
+    const i =listIdQui.indexOf(';'+id.padStart(7, "0")+";")+9 //debut du suivant
+console.log(id.padStart(7, "0")+";")
+console.log(i)
+    if (i > 0) {
+      row0.idSuivant=listIdQui.substring(i,i+7);
+console.log(listIdQui.substring(i,i+7))
+    } else {
+      row0.idSuivant="0";
+console.log("0")
+    }
+
+    res.json(row0);
+    //res.json(rows[0]);
   } catch (err) {
     console.log( err.message)
     res.status(500).json({ error: err.message });
