@@ -29,8 +29,9 @@
                 <input id="quidatedeces" type="text" name="datedeces" class="form-control" placeholder="datedeces">
                 <input id="quicreatts" type="text" name="creatts" class="form-control" placeholder="creatts">
                 <input id="quimodifts" type="text" name="modifts" class="form-control" placeholder="modifts">
-
             </div>
+
+            <img id="imgQui" height="400"/>
 
         </form>
     </div>
@@ -66,7 +67,7 @@
             document.getElementById('quidatedeces').value=qui.datedeces;
             document.getElementById('quicreatts').value=qui.creatts;
             document.getElementById('quimodifts').value=qui.modifts;
-
+            document.getElementById("imgQui").src = "http://localhost:3000/quis/imgQui/"+qui.id; 
             document.getElementById('h1haut').innerHTML=qui.fullname;
         }
 

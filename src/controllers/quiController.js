@@ -1,4 +1,6 @@
-const db = require('../db');
+const db = require('../db')
+const path = require('path')
+const fs = require('fs')
 
 exports.getAllQui = async (req, res) => {
   console.log("getAllQui")
@@ -9,6 +11,29 @@ exports.getAllQui = async (req, res) => {
     console.log( err.message)
     res.status(500).json({ error: err.message });
   }
+};
+
+exports.getImgQuiById = async (req, res) => {
+  console.log("getImgQuiById")
+  const rep="../QuoiQuiTek-4D_Folders/QuoiQuiTek-4D_Data/Photos/";
+  const num=req.params.id;
+  const nomFic="i"+num.toString().padStart(7, "0")+".png";
+  const nomComplet=rep+nomFic;
+  var imgPath=path.resolve(nomComplet);
+  if (fs.existsSync(imgPath)) {
+      console.log("img OK")
+  }
+  else {
+      console.log("img KO "+imgPath)
+      imgPath=path.resolve("./public/img/ko.jpg")
+      console.log("img defaut "+imgPath)
+  }
+  fs.readFile(imgPath, function(err, data) {
+  if (err) throw err // Fail if the file can't be read.
+  res.writeHead(200, {'Content-Type': 'image/jpeg'})
+  res.end(data) // Send the file data to the browser.
+  })
+
 };
 
 exports.getQuiById = async (req, res) => {
