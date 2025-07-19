@@ -21,7 +21,6 @@
                   <th>fullname</th>
                   <th>genre</th>
                   <th>datenaiss</th>
-                  <th></th>
               </tr>
             </thead>
             <tbody id="qui_table_tbody">
@@ -34,11 +33,11 @@
         td.innerHTML = value
         return td;
     }
-    const createTdA = (value) => {
+    const createTdA = (lib, id) => {
         const td = document.createElement('td')
         const a = document.createElement('a')
-        a.innerHTML = 'afficher';
-        a.href = "quiDetail.html?"+value;
+        a.innerHTML = lib;
+        a.href = "quiDetail.html?"+id;
         td.append(a)
         return td;
     }
@@ -56,10 +55,9 @@
       quis.forEach(qui => {
         const tr = document.createElement('tr')
         tr.append(createTd(qui.domaine))
-        tr.append(createTd(qui.fullname))
+        tr.append(createTdA(qui.fullname,qui.id))
         tr.append(createTd(qui.genre))
         tr.append(createTd(qui.datenaiss))
-        tr.append(createTdA(qui.id))
         tbody.append(tr)      
       });
     }
