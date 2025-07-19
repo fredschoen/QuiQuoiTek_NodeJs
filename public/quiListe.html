@@ -34,6 +34,14 @@
         td.innerHTML = value
         return td;
     }
+    const createTdA = (value) => {
+        const td = document.createElement('td')
+        const a = document.createElement('a')
+        a.innerHTML = 'afficher';
+        a.href = "quiDetail.html?"+value;
+        td.append(a)
+        return td;
+    }
     async function fetchquis() {
       //alert("fetchquis")
       const res = await fetch('/quis');
@@ -45,12 +53,13 @@
  
       const tbody = document.getElementById('qui_table_tbody');
       tbody.innerHTML = ''
-      quis.forEach(a => {
+      quis.forEach(qui => {
         const tr = document.createElement('tr')
-        tr.append(createTd(a.domaine))
-        tr.append(createTd(a.fullname))
-        tr.append(createTd(a.genre))
-        tr.append(createTd(a.datenaiss))
+        tr.append(createTd(qui.domaine))
+        tr.append(createTd(qui.fullname))
+        tr.append(createTd(qui.genre))
+        tr.append(createTd(qui.datenaiss))
+        tr.append(createTdA(qui.id))
         tbody.append(tr)      
       });
     }
