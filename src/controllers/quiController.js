@@ -30,7 +30,8 @@ exports.getImgQuiById = async (req, res) => {
   if (fs.existsSync(imgPath)) {
   }
   else {
-      imgPath=path.resolve("./public/img/ko.jpg")
+    //console.log("KO " + imgPath)
+    imgPath=path.resolve("./public/img/ko.jpg")
   }
   fs.readFile(imgPath, function(err, data) {
   if (err) throw err // Fail if the file can't be read.
@@ -42,21 +43,20 @@ exports.getImgQuiById = async (req, res) => {
 
 exports.getQuiById = async (req, res) => {
   console.log("getQuiById")
-  console.log(listIdQui)
+  //console.log(listIdQui)
   try {
     const { id } = req.params;
     const { rows } = await db.query('SELECT * FROM qui WHERE id = $1', [id]);
     if (rows.length === 0) return res.status(404).json({ error: 'Qui not found' });
     var row0=rows[0];
-    const i =listIdQui.indexOf(';'+id.padStart(7, "0")+";")+9 //debut du suivant
-console.log(id.padStart(7, "0")+";")
-console.log(i)
-    if (i > 0) {
-      row0.idSuivant=listIdQui.substring(i,i+7);
-console.log(listIdQui.substring(i,i+7))
+    //position du id Suivant:
+    const posIdSuivant =listIdQui.indexOf(';'+id.padStart(7, "0")+";")+9 //debut du suivant
+    const posIdPrecedent=posIdSuivant - 16
+    row0.idSuivant=listIdQui.substring(posIdSuivant,posIdSuivant+7);
+    if (posIdPrecedent>0) {
+      row0.idPrecedent=listIdQui.substring(posIdPrecedent,posIdPrecedent+7);
     } else {
-      row0.idSuivant="0";
-console.log("0")
+      row0.idPrecedent=0;
     }
 
     res.json(row0);

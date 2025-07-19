@@ -31,13 +31,14 @@
                 <input id="quimodifts" type="text" name="modifts" class="form-control" placeholder="modifts">
             </div>
 
-            <img id="image" height="500"/>
+            <img id="image" height="550"/>
 
         </form>
     </div>
 
     <a href="quiListe.html" class="button">Liste</a>
-    <a id="suivant" href="" class="button">Suivant</a>
+    <a id="btPrecedent" href="" class="button">Précédent</a>
+    <a id="btSuivant" href="" class="button">Suivant</a>
 
     <script>
         window.onload = () => {
@@ -49,7 +50,6 @@
             if (url.length>1) {
                 refreshQui(url[1])
             }
-
         }
 
         async function refreshQui(value) {
@@ -71,7 +71,8 @@
 
             document.getElementById('h1haut').innerHTML=qui.fullname;
             document.getElementById("image").src = "http://localhost:3000/quis/imgQui/"+qui.id; 
-            document.getElementById("suivant").href = "http://localhost:3000/quiDetail.html?"+qui.idSuivant; 
+            document.getElementById("btSuivant").href = "http://localhost:3000/quiDetail.html?"+qui.idSuivant; 
+            document.getElementById("btPrecedent").href = "http://localhost:3000/quiDetail.html?"+qui.idPrecedent; 
 
             console.log(qui);
         }
