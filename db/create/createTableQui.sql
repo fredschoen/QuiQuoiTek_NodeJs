@@ -4,19 +4,19 @@
 
 CREATE TABLE IF NOT EXISTS public.qui
 (
-    id integer,
-    nom character varying(50) COLLATE pg_catalog."default",
-    prenom character varying(50) COLLATE pg_catalog."default",
-    fullname character varying(50) COLLATE pg_catalog."default",
-    genre character varying(1) COLLATE pg_catalog."default",
-    domaine character varying(50) COLLATE pg_catalog."default",
-    pays character varying(50) COLLATE pg_catalog."default",
-    style character varying(50) COLLATE pg_catalog."default",
-    remarque character varying(5000) COLLATE pg_catalog."default",
-    creatts character varying(20) COLLATE pg_catalog."default",
-    modifts character varying(20) COLLATE pg_catalog."default",
-    datenaiss character varying(10) COLLATE pg_catalog."default",
-    datedeces character varying(10) COLLATE pg_catalog."default"
+    id integer PRIMARY KEY,
+    nom character varying(50) NOT NULL,
+    prenom character varying(50) ,
+    fullname character varying(50) ,
+    genre character varying(1),
+    domaine character varying(50) ,
+    pays character varying(50) ,
+    style character varying(50) ,
+    remarque character varying(5000) ,
+    creatts character varying(20) ,
+    modifts character varying(20) ,
+    datenaiss character varying(10) ,
+    datedeces character varying(10) 
 )
 
 TABLESPACE pg_default;
